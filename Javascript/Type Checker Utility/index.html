@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TypeChecker</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #001219;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .type-checker-container {
+      background-color: #1a1a1a;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      color: #ffd700;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px #000;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      resize: none;
+      outline: none;
+      color: #000;
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #007bff;
+      border: none;
+      padding: 12px 25px;
+      color: white;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #result {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 30px;
+      gap: 15px;
+    }
+    #result p {
+      flex: 1 1 30%;
+      padding: 10px;
+      background-color: #002b36;
+      color: #00d9ff;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ff00;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="type-checker-container">
+    <h1>Type Checker Utility</h1>
+    <textarea id="input" placeholder="Enter a value here..."></textarea>
+    <button id="checkType">Check Type</button>
+    <div id="result">
+      <p id="string">String:</p>
+      <p id="number">Number:</p>
+      <p id="boolean">Boolean:</p>
+      <p id="object">Object:</p>
+      <p id="array">Array:</p>
+      <p id="char">Char:</p>
+    </div>
+  </div>
+
+  <script>
+    const inputField = document.getElementById("input");
+    const checkTypeButton = document.getElementById("checkType");
+
+    const resultFields = {
+      string: document.getElementById("string"),
+      number: document.getElementById("number"),
+      boolean: document.getElementById("boolean"),
+      object: document.getElementById("object"),
+      array: document.getElementById("array"),
+      char: document.getElementById("char"),
+    };
+
+    checkTypeButton.addEventListener("click", () => {
+      const value = inputField.value.trim();
+
+      // String: Always true, input is string unless parsed
+      resultFields.string.innerText = "String: true";
+
+      // Number check: valid finite number
+      const isNumber = !isNaN(value) && value !== "" && isFinite(value);
+      resultFields.number.innerText = "Number: " + isNumber;
+
+      // Boolean check: "true"/"false" only
+      const isBoolean = value.toLowerCase() === "true" || value.toLowerCase() === "false" || value === "1" || value === "0";
+      resultFields.boolean.innerText = "Boolean: " + isBoolean;
+
+      // Object & Array check
+      let parsed;
+      let isObject = false;
+      let isArray = false;
+
+      try {
+        parsed = JSON.parse(value);
+        isObject = typeof parsed === "object" && !Array.isArray(parsed) && parsed !== null;
+        isArray = Array.isArray(parsed);
+      } catch (e) {
+        isObject = false;
+        isArray = false;
+      }
+
+      resultFields.object.innerText = "Object: " + isObject;
+      resultFields.array.innerText = "Array: " + isArray;
+
+      // Char check: single non-whitespace character
+      resultFields.char.innerText = "Char: " + (value.length === 1 ? "true" : "false");
+    });
+  </script>
+</body>
+</html>
