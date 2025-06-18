@@ -20,7 +20,7 @@ const App = () => {
     setpwd(pass);
   } , [length, numberAllow , charAllow ])
   
-  useEffect(()=>{pwdgenerator()},[length,charAllow,numberAllow])
+  // useEffect(()=>{pwdgenerator()},[length,charAllow,numberAllow])
 
   const copyToClipboard = useCallback(()=>{
     pwdRef.current?.select();
@@ -47,6 +47,9 @@ const App = () => {
           <input type='checkbox' id='checkbox' Checked={charAllow} onChange={()=>{setcharAllow((prev)=>!prev)}} />
           <label htmlFor='checkbox'>Character</label>
         </div>
+      </div>
+      <div className='generate-btn-cont'>
+        <button onClick={pwdgenerator} className='generate-btn'>Generate Button</button>
       </div>
     </div> 
     </>

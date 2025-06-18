@@ -1,10 +1,10 @@
 body{
-    background: linear-gradient(26deg, rgb(49, 24, 24) 50%, rgb(180, 158, 158) 30%);
+    background: radial-gradient(circle , black 15%, darkblue 30%);
     overflow: hidden;
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center ;
+    align-items: center;
 }
 
 .container{
@@ -15,9 +15,14 @@ body{
     flex-direction: column;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 10px 0 red;
     gap: 20px;
+    padding: 100px;
+    border-left: 10px double black;
+    border-bottom: 10px solid black;
+    border-bottom-right-radius: 50px;
+    border-top-right-radius: 50px;
 }
+
 
 .input-container, .btn-container{
     flex: 1;
@@ -56,4 +61,18 @@ button:hover{
 label{
     color: black;
     font-size: larger;
+    font-weight: 800;
+    font-size: x-large;
+}
+
+.generate-btn{
+    padding: 10px;
+    border-radius: 0;
+    font-size: large;
+    background-color: black;
+}
+
+.generate-btn:hover>{
+    background-color: green;
+    transition: 0.5s;
 }

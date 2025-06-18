@@ -109,6 +109,11 @@ input{
   font-weight: 700;
 }
 
+.addtask2 button:hover{
+  background: linear-gradient();
+  color: black;
+}
+
 .search-container{
   display: flex;
   width: 100%;
