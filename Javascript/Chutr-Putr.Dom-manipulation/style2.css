@@ -1,0 +1,45 @@
+.container2.inactive{
+    display: none;
+}
+
+.container2{
+    width: 100vw;
+    /* height: 100vh; */
+    padding: 20px;
+}
+
+.container2 section{
+    color: gray;
+    display: inline-block;
+    width: 300px;
+    font-size: small;
+}
+
+section h1{
+    color: white;
+    text-shadow: 0 0 10px white;
+}
+
+section:nth-child(1){
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+section:nth-child(2){
+    position: absolute;
+    top: 40px;
+    right: 40px;
+}
+
+section:nth-child(3){
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+}
+
+section:nth-child(4){
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+}
